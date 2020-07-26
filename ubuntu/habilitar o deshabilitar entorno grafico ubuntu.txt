@@ -1,0 +1,15 @@
+http://somebooks.es/iniciar-ubuntu-18-04-lts-sin-interfaz-grafica-parte-ii/
+
+quitar
+sudo systemctl set-default multi-user.target
+sudo reboot
+
+reestablecer temporalmente
+sudo systemctl start graphical.target
+
+reestablecer indefinidamente
+sudo systemctl set-default graphical.target
+sudo reboot
+
+habilitar hiper en virtualbox
+https://www.zonasystem.com/2019/02/habilitar-virtualizacion-anidada-vt-x-amd-v-virtualbox.html
