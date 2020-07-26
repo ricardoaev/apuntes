@@ -1,8 +1,8 @@
 # instalar microk8
 
-seguir las instruciones de https://microk8s.io/#get-started
+1) seguir las instruciones de https://microk8s.io/#get-started
 
-para agregar dashboard kubernetes
+2) para agregar dashboard kubernetes
 
 https://microk8s.io/docs/addon-dashboard
 
