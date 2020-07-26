@@ -1,0 +1,30 @@
+Agregar nuestro usuario al grupo de Docker
+$ sudo usermod -aG docker $USER
+
+NOTA:las imagenes docker alphine y slim son las imagenes mas pequeñas, tratar de usar esas en productivo
+
+sudo docker run -it [imagen] -> crea un contenedor y como la imagen no existe, la descarga
+sudo docker run --rm -it [imagen] -> este comando no borra la imagen, solo borra el contenedor
+sudo docker rm [id o nombre contenedor] -> elimina el contenedor, no la imagen
+
+docker images -> Muestra todas las imagenes que uno tiene.
+docker inspect [REPOSITORY]:[TAG] -> Nos sirve para ver los meta datos. Estos se van a mostrar en formato JSON.
+Entre los metadatos vamos a encontrar datos interesantes: La arquitectura(si no te funciona, puede ser que sea distinta tú arquitectura), OS,versión de docker. el driver (lo usa para almacenar información).
+Inspeccionar contenedores(Tener en cuenta que se convierte en contenedor cuando la imagen está corriendo):
+docker ps -a
+docker inspect [NAMES] -> Nos devuelve los metadatos en formato JSON.
+En estos casos nos encontramos con cosas especificas de la imagen y como se relaciona con nuestro SO.
+docker history [REPOSITORY] -> Muestra todas las capas. Nos permite ver el tamaño de las capas.
+
+iMAGENES:
+docker images -> Lista imagenes
+docker rmi [REPOSITORY]:TAG / docker rmi [IMAGE ID]-> Elimina la imagen. Tenemos que tener en cuenta que las imágenes se convierten en contenedores y si hay otro contenedor que este usando la imagen, no lo vamos a poder eliminar.
+CONTENEDORES:
+docker rmi [NAMES] -> Elimina el contenedor
+docker images -q --no-trunc -f dangling=true -> Son las imágenes que no pertenecen a ningún contenedor.
+docker images -q --no-trunc -f dangling=true | xargs docker rmi ->xargs: agarra la salida y la convierte a argumento
+docker ps -a -q -> Muestra los contenedores parados
+dokcer rm $(docker ps -a -q) -> el $(docker ps -a -q) Convierte en una sola lista la salida del comando
+
+Con la instruccion ARG pueden crear variables en sus Dockerfiles ==> ARG RUTA_APP=/src
+
